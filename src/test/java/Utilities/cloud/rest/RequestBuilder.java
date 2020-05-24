@@ -84,17 +84,7 @@ public class RequestBuilder {
     public static String ServiceHost = "";
     public static String ServicePort = "";
     public static String BasePath = "";
-    public static String ServiceInfoHost = "";
-    public static String ServiceInfoPort = "";
-    public static String ServiceInfoBasePath = "";
-    public static String V2ServiceHost = "";
-    public static String V2ServicePort = "";
-    public static String V2BasePath = "";
-    public static String JiraHost = "";
-    public static String JiraPort ="";
-    public static String JiraBasePath = "";
-    public static String APIProxy = "";
-    public static String APIProxyPort = "";
+
 
     public static Headers defaultHeaders(){
         return Headers.headers(new Header(KEY_ACCEPT,VALUE_APP_JSON), new Header(KEY_CONTENT_TYPE,"application/json"));
@@ -117,34 +107,17 @@ public class RequestBuilder {
     }
 
     public static RequestSpecification defaultRequestSpec(){
-        return given()
-                .baseUri(ServiceHost)
-                .port(Integer.parseInt(ServicePort))
-                .basePath(BasePath).headers(defaultHeaders())
-                .relaxedHTTPSValidation();
+        RequestSpecification specification = given().baseUri(ServiceHost);
+        if (Integer.parseInt(ServicePort) > 0) {
+            specification = specification.port(Integer.parseInt(ServicePort));
+        }
+        if(!BasePath.equals("")){
+            specification = specification.basePath(BasePath);
+        }
+
+        return specification.headers(defaultHeaders()).relaxedHTTPSValidation();
     }
 
-    public static RequestSpecification defaultServiceInfoReqSpec(){
-        return given()
-                .baseUri(ServiceInfoHost)
-                .port(Integer.parseInt(ServiceInfoPort))
-                .basePath(ServiceInfoBasePath).headers(defaultHeaders())
-                .relaxedHTTPSValidation();
-    }
-
-
-    public static RequestSpecification defaultV2ReuqestSpec(String dc, String token){
-        return given()
-                .baseUri(V2ServiceHost)
-                .basePath(V2BasePath)
-                .headers(defaultV2Headers(token ,dc)).relaxedHTTPSValidation();
-    }
-    public static RequestSpecification defaultV2ReuqestSpec(String userProfile){
-        return given()
-                .baseUri(V2ServiceHost)
-                .basePath(V2BasePath)
-                .headers(defaultV2Headers(userProfile)).relaxedHTTPSValidation();
-    }
 
     public static RequestSpecification defaultRequestSpecWithAuthToken(AuthenticationTokens token){
 
@@ -171,35 +144,10 @@ public class RequestBuilder {
                         , AuthenticationTokensCache.getInstance().getToken(key).getToken());
     }
 
-    public static RequestSpecification defaultServiceAPIRequestVPCToken(String key){
-        return defaultServiceInfoReqSpec()
-                .config(config().headerConfig(headerConfig()
-                        .overwriteHeadersWithName(AUTH_TOKEN_HEADER_NAME_REQUEST_VPC)))
-                .header(AUTH_TOKEN_HEADER_NAME_REQUEST_VPC
-                        , AuthenticationTokensCache.getInstance().getToken(key).getToken());
-    }
-
-    public static RequestSpecification defaultServiceAPIRequestNGPToken(String key){
-        return defaultServiceInfoReqSpec()
-                .config(config().headerConfig(headerConfig()
-                        .overwriteHeadersWithName(AUTH_TOKEN_HEADER_NAME_REQUEST_NGP)))
-                .header(AUTH_TOKEN_HEADER_NAME_REQUEST_NGP
-                        , AuthenticationTokensCache.getInstance().getToken(key).getToken());
-    }
-
-
-    public static RequestSpecification defaultRequestJiraAPI(String cookieHeader, boolean proxyOn){
-        RequestSpecification spec = given().baseUri(JiraHost)
-                .basePath(JiraBasePath).header(new Header(JIRA_COOKIE_HEADER,cookieHeader))
-                .header(new Header(KEY_CONTENT_TYPE, VALUE_APP_JSON))
-                .header(new Header(KEY_ACCEPT, VALUE_APP_JSON))
-                //.proxy(APIProxy, Integer.parseInt(APIProxyPort))
-                .relaxedHTTPSValidation();
-        if(proxyOn){
-            spec.proxy(APIProxy,Integer.parseInt(APIProxyPort));
-        }
-
-        return spec;
+    public static void loadRequestSpecs(String service_name){
+        ServiceHost = ProfileProperties.getInstance().getProperties().getProperty(service_name+ ".ServiceHost");
+        ServicePort = ProfileProperties.getInstance().getProperties().getProperty(service_name+ ".ServicePort");
+        BasePath = ProfileProperties.getInstance().getProperties().getProperty(service_name+ ".BasePath");
     }
 
 }

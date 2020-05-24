@@ -22,15 +22,10 @@ public class RunnerBase extends AbstractTestNGCucumberTests {
     public void prepareAPITest(ITestContext test) throws IOException, ConfigurationException {
 
         ProfileProperties.getInstance().load();
-        RequestBuilder.ServiceHost = getProperty(ProfileProperties.KEY_PROP_APISERVICEHOST);
-        RequestBuilder.ServicePort = getProperty(ProfileProperties.KEY_PROP_APISERVICEHOSTPORT);
-        RequestBuilder.BasePath = getProperty(ProfileProperties.KEY_PROP_APISERVICEBASEPATH);
-        RequestBuilder.V2ServiceHost = getProperty(ProfileProperties.V2KEY_PROP_APISERVICEHOST);
-        RequestBuilder.V2ServicePort = getProperty(ProfileProperties.V2KEY_PROP_APISERVICEHOSTPORT);
-        RequestBuilder.V2BasePath = getProperty(ProfileProperties.V2KEY_PROP_APISERVICEBASEPATH);
-        RequestBuilder.ServiceInfoHost = getProperty("ServiceInfoHost");
-        RequestBuilder.ServiceInfoPort = getProperty("ServiceInfoPort");
-        RequestBuilder.ServiceInfoBasePath = getProperty("ServiceInfoBasePath");
+        //RequestBuilder.ServiceHost = getProperty(ProfileProperties.KEY_PROP_APISERVICEHOST);
+        //RequestBuilder.ServicePort = getProperty(ProfileProperties.KEY_PROP_APISERVICEHOSTPORT);
+        //RequestBuilder.BasePath = getProperty(ProfileProperties.KEY_PROP_APISERVICEBASEPATH);
+
         
     }
 
