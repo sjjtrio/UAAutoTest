@@ -1,0 +1,130 @@
+.TestCase
+{
+ border: 8px solid rgba(234,212,199,0.24);
+
+padding: 5px;
+}
+
+.CaseName{
+  font-family: "Arial Black", Gadget, sans-serif;
+font-size: 17px;
+letter-spacing: 2px;
+word-spacing: 2px;
+color: #000000;
+font-weight: normal;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+}
+
+.Passed{
+  font-family: "Lucida Console", Monaco, monospace;
+font-size: 17px;
+letter-spacing: -1.2px;
+word-spacing: -0.6px;
+color: #1FA244;
+font-weight: 700;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+position: relative;
+left: 20px;
+}
+
+.TestSteps{
+  display: none;
+  background: #F6FFEA none repeat-x local -50px -50px;
+}
+
+.TestStep{
+	background: #F6FFEA none repeat-x local -50px -50px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+.Failed{
+  font-family: "Lucida Console", Monaco, monospace;
+font-size: 17px;
+letter-spacing: -1.2px;
+word-spacing: -0.6px;
+color: #FF2A59;
+font-weight: 700;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+position: relative;
+left: 20px;
+}
+
+.TopPanel{
+
+-webkit-box-shadow: 5px 8px 17px 1px #F0FFB8;
+box-shadow: 5px 8px 17px 1px #F0FFB8;
+background: #EEFFD8 none repeat-x local -50px -50px;
+padding: 10px;
+}
+
+.TestLog{
+	outline: 2px solid #89A495;
+	outline-offset: 0px;
+	background: #ECFFF2 none repeat-x local -50px -50px;
+	display: none;
+	padding: 10px;
+	position: relative;
+	top: 10px;
+}
+.APICalls{
+    	outline: 2px solid #89A495;
+    	outline-offset: 0px;
+    	background: #ECFFF2 none repeat-x local -50px -50px;
+    	padding: 10px;
+    	position: relative;
+    	top: 10px;
+}
+.CallsAndOutputs{
+display: none;
+}
+.APICall{
+    	padding: 10px;
+}
+
+.APICallDetails{
+   	outline: 4px solid #89A495;
+    	outline-offset: 0px;
+    	background: #ECFFF2 none repeat-x local -50px -50px;
+    	display: none;
+    	padding: 10px;
+    	position: relative;
+    	top: 10px;
+}
+
+.dotline{
+border-top: 2px dotted #89A495;
+height: 10px;
+position: relative;
+top: 5px;
+padding: 1px;
+}
+
+.circle {
+  height: 10px;
+  width: 10px;
+  background-color: #555;
+  border-radius: 50%;
+  background-color: #67FF85;
+}
+.circle2 {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: #B7D4EE;
+}
+
+.iteration{
+	background: #D0E4F5 none no-repeat scroll 0 0;
+	position: relative;
+	left: 10px;
+}
